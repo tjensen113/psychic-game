@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PSYCHIC Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+   <div id="game">
+
+      <div class="jumbotron jumbotron-fluid">
+          <div class="container">
+            <h1 class="display-4">PSYCHIC Game</h1>
+            <p class="lead">press any button to start playing.</p>
+          </div>
+        </div>
+
+
+
+       
+       <p>Wins</p>
+       
+       <p>Losses:</p>
+       
+       <p>Guesses left:</p>
+       
+       <p>Your guesses so far:</p>
+       
+    </div>
+   
+    <script type="text/javascript">
+		
+      
+  
+    
+    var wins = 0;
+    var losses = 0;
+    var guessChoices = [];
+      var numGuesses = 9;
+       
+    var computerChoices = [];
+    computerChoices = ("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z");
+
+    document.onkeyup = function(event) {
+      var userGuess = event.key;
+      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+    
+    	
+				if (userGuess === computerGuess) {
+					wins++;
+					numGuesses = 9;
+					guessChoices = [];
+				}
+
+				if (userGuess != computerGuess) {
+					numGuesses --;
+					guessChoices.push(userGuess);
+				}
+
+				if (numGuesses === 0) {
+	
+				numGuesses = 9;
+				losses ++;
+				guessChoices = [];}
+
+      var html = 
+			
+      "<h1> The Psychic Game </h1>" +
+			
+      "<p>press any button to start playing.</p>" +
+			
+      "<p>Wins: " + wins + "</p>" +
+			
+      "<p>Losses: " + losses + "</p>" +
+			
+      "<p>Guesses Left: " + numGuesses + "</p>" +
+			
+      "<p>Your Guesses so far: " + guessChoices.join(", ") + "</p>";
+
+			document.querySelector("#game").innerHTML = html;
+
+    
+    }
+    </script>
+
+</body>
+</html>
